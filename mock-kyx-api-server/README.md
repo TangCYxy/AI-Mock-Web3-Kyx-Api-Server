@@ -28,10 +28,10 @@ The mock server directly exposes the same endpoints as the original providers, a
 
 ### GoPlus Provider API
 
-GoPlus only provides a single GET endpoint for address risk assessment:
+GoPlus provides API endpoints for address risk assessment following the actual GoPlus API structure:
 
 ```
-GET /address/{address}
+GET /api/v1/address_security/{address}
 ```
 
 ### Chainalysis Provider API
@@ -120,22 +120,22 @@ chainalysis.host=http://localhost:8080
 
 Test a risky address (returns positive risk):
 ```bash
-curl -X GET "http://localhost:8080/address/0x123456789abcdef"
+curl -X GET "http://localhost:8080/api/v1/address_security/0x123456789abcdef"
 ```
 
 Expected response:
 ```json
-{"code":1,"message":"ok","result":{"cybercrime":null,"money_laundering":"1","number_of_malicious_contracts_created":null,"gas_abuse":null,"financial_crime":null,"darkweb_transactions":null,"reinit":null,"phishing_activities":null,"fake_kyc":null,"blacklist_doubt":null,"fake_standard_interface":null,"data_source":"Mock KYX Server","stealing_attack":null,"blackmail_activities":null,"sanctioned":null,"malicious_mining_activities":null,"mixer":null,"honeypot_related_address":null,"inRisk":true},"inRisk":true}
+{"code":1,"message":"ok","result":{"cybercrime":null,"money_laundering":"1","number_of_malicious_contracts_created":null,"gas_abuse":null,"financial_crime":null,"darkweb_transactions":null,"reinit":null,"phishing_activities":null,"fake_kyc":null,"blacklist_doubt":null,"fake_standard_interface":null,"data_source":"Mock KYX Server","stealing_attack":null,"blackmail_activities":null,"sanctioned":null,"malicious_mining_activities":null,"mixer":null,"honeypot_related_address":null},"inRisk":true}
 ```
 
 Test a non-risky address (returns no risk):
 ```bash
-curl -X GET "http://localhost:8080/address/0x2abcdef0123456789"
+curl -X GET "http://localhost:8080/api/v1/address_security/0x2abcdef0123456789"
 ```
 
 Expected response:
 ```json
-{"code":1,"message":"ok","result":{"cybercrime":"0","money_laundering":"0","number_of_malicious_contracts_created":"0","gas_abuse":"0","financial_crime":"0","darkweb_transactions":"0","reinit":"0","phishing_activities":"0","fake_kyc":"0","blacklist_doubt":"0","fake_standard_interface":"0","data_source":"Mock KYX Server","stealing_attack":"0","blackmail_activities":"0","sanctioned":"0","malicious_mining_activities":"0","mixer":"0","honeypot_related_address":"0","inRisk":false},"inRisk":false}
+{"code":1,"message":"ok","result":{"cybercrime":"0","money_laundering":"0","number_of_malicious_contracts_created":"0","gas_abuse":"0","financial_crime":"0","darkweb_transactions":"0","reinit":"0","phishing_activities":"0","fake_kyc":"0","blacklist_doubt":"0","fake_standard_interface":"0","data_source":"Mock KYX Server","stealing_attack":"0","blackmail_activities":"0","sanctioned":"0","malicious_mining_activities":"0","mixer":"0","honeypot_related_address":"0"},"inRisk":false}
 ```
 
 #### Chainalysis Tests

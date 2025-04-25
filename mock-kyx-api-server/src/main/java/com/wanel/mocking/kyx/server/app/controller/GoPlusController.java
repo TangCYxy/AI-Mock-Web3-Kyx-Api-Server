@@ -54,8 +54,9 @@ public class GoPlusController implements KyxProviderApi {
     /**
      * Check if an address is risky (KYA - Know Your Address)
      * This endpoint follows the GoPlus EOA address risk check API format
+     * The actual GoPlus API URL format is: https://api.gopluslabs.io/api/v1/address_security/{address}
      */
-    @GetMapping("/address/{address}")
+    @GetMapping("/api/v1/address_security/{address}")
     public ResponseEntity<GoPlusRiskEoaAddressResponse> checkAddress(@PathVariable String address) {
         log.info("Received GoPlus address check request for address: {}", address);
         
@@ -107,6 +108,8 @@ public class GoPlusController implements KyxProviderApi {
                 .message("ok")
                 .result(resultData)
                 .build();
+        
+        // The inRisk field is already provided by the isInRisk() method in the GoPlusRiskEoaAddressResponse class
         
         return ResponseEntity.ok(response);
     }

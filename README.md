@@ -11,7 +11,7 @@ This repository consists of two main components:
 A Spring Boot application that implements a mock server for the Chainalysis and GoPlus API endpoints. The server allows you to simulate responses from these API providers for testing purposes, without needing to connect to the actual services.
 
 The mock server supports:
-- GoPlus address risk assessment
+- GoPlus address risk assessment (via `/api/v1/address_security/{address}`)
 - Chainalysis KYA (Know Your Address) workflow
 - Chainalysis KYT (Know Your Transaction) workflow
 
